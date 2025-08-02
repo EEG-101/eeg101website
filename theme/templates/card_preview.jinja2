@@ -1,0 +1,14 @@
+
+<sl-card >
+
+  {% if 'image' in item.front %}
+    <img
+      slot="image"
+      src="{{ item.front['image'] }}"
+      loading="lazy"
+    />
+  {% endif %}
+
+  {{ item.content_html|safe }}
+
+</sl-card>

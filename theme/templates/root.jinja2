@@ -1,0 +1,30 @@
+{% extends 'master.jinja2' %}
+
+{% block main %}
+
+<article id="front">
+
+    {{ index.content_html|safe }}
+
+    <div class="front-grid">
+    {% for branch in index.branches %}
+      {% if branch.front %}
+        <a href="{{branch.name}}">
+          {% set item = branch %}
+          {% include 'card_preview.jinja2' %}
+        </a>
+      {% else %}
+        <h2>{{ branch.name|replace("_", " ")|title }} </h2>
+        <div class={{branch.name}}>
+          {% for leaf in branch.leaves %}
+            {% set item = leaf %}
+            {% include 'card_preview.jinja2' %}
+          {% endfor %}
+        </div> 
+      {% endif %}
+    {% endfor %}
+    </div>
+
+</article>
+
+{% endblock %}
